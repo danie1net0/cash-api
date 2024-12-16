@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\{OpenWeatherMapService, WeatherServiceInterface};
+use App\Factories\WeatherServiceFactory;
+use App\Services\WeatherServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +14,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->app->bind(WeatherServiceInterface::class, fn () => new OpenWeatherMapService());
+        $this->app->bind(WeatherServiceInterface::class, fn () => new WeatherServiceFactory()->create());
     }
 }
