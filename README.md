@@ -1,66 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Cash Api
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Chaves de API
 
-## About Laravel
+### Open Weather
+1. Acesse a [página de cadastro](https://home.openweathermap.org/users/sign_up) da OpenWeather.
+2. Insira seu nome, um e-mail e senha e confirme o e-mail através da notificação que será enviada.
+3. Após confirmar o cadastro, vá para a página [API keys](https://home.openweathermap.org/api_keys) no dashboard da OpenWeather.
+4. Adicione um nome para a chave no campo 'Create key' e clique no botão 'Generate'.
+5. Copie a chave gerada e cole no valor da variável `OPENWEATHER_API_KEY=` do arquivo `.env` da aplicação.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Weather API
+1. Acesse a [página de cadastro](https://www.weatherapi.com/signup.aspx) da Weather API.
+2. Insira um e-mail e senha e confirme o e-mail através da notificação que será enviada.
+3. Realize a autenticação com a conta criada.
+4. Após a autenticação, haverá um redirecionamento para o dashboard e a chave de API já estará disponível.
+5. Copie a chave e cole no valor da variável `WEATHERAPI_API_KEY=` do arquivo `.env` da aplicação.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Ambiente de desenvolvimento
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clonar o repostitório:
+    ```bash
+   git clone git@github.com:danie1net0/cash-api.git && cd cash-api
+   ```
+   
+2. Criar o arquivo `.env`:
+    ```bash
+   cp .env.example .env
+   ```
+   > Alterar a porta da aplicação `APP_PORT`, se necessário
 
-## Learning Laravel
+   > Adiciona as chaves das APIs de tempo `OPENWEATHER_API_KEY` e/ou `WEATHERAPI_API_KEY`
+   
+3. Instalar dependências do Composer:
+   ```bash
+   docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php84-composer:latest \
+    composer install --ignore-platform-reqs
+   ```
+    > A aplicação estará disponível em `http://localhost:8080`, ou na porta definida anteriormente
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4. Cria o contêiner:
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Criar chave da aplicação:
+   ```bash
+   ./vendor/bin/sail artisan key:generate
+   ```
