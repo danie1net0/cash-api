@@ -36,12 +36,14 @@ return [
 
     'weather' => [
         'openweather' => [
+            'is_active' => env('OPENWEATHER_ATIVATED'),
             'base_url' => env('OPENWEATHER_BASE_URL'),
             'weather_endpoint' => env('OPENWEATHER_WEATHER_ENDPOINT'),
             'api_key' => env('OPENWEATHER_API_KEY'),
         ],
 
         'weatherapi' => [
+            'is_active' => env('WEATHERAPI_ACTIVATED'),
             'base_url' => env('WEATHERAPI_BASE_URL'),
             'weather_endpoint' => env('WEATHERAPI_WEATHER_ENDPOINT'),
             'api_key' => env('WEATHERAPI_API_KEY'),
