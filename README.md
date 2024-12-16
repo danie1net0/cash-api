@@ -31,6 +31,8 @@
 
    > Adiciona as chaves das APIs de tempo `OPENWEATHER_API_KEY` e/ou `WEATHERAPI_API_KEY`
    
+   > Caso ambos serviços estejam com as chaves configuradas, qual deles será usado pode ser definido alternando-se os valores das variáveis `OPENWEATHER_ATIVATED` e `WEATHERAPI_ACTIVATED`
+   
 3. Instalar dependências do Composer:
    ```bash
    docker run --rm \
