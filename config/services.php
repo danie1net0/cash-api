@@ -33,4 +33,12 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+
+    'weather' => [
+        'openweather' => [
+            'base_url' => env('OPENWEATHER_BASE_URL'),
+            'weather_endpoint' => env('OPENWEATHER_WEATHER_ENDPOINT'),
+            'api_key' => env('OPENWEATHER_API_KEY'),
+        ],
+    ],
 ];
