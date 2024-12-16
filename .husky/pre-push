@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+echo "🔍 Executando verificações de pre-push..."
+
+# Verificando formatações com Prettier
+echo "💅 Verificando formatações..."
+vendor/bin/sail pint --test
+
+# Verificando formatações com Prettier
+echo "🧪 Realizando testes..."
+vendor/bin/sail artisan test -p
+
+echo "✅ Verificações de pre-push concluídas!"
